@@ -17,7 +17,19 @@ return[
     'cart' => 'cart',
     'newUser' => 'Hello  welcome to site',
     'addItemToCart' => 'Item added to cart success',
-    'delItem' => 'udaleno',
-    'addItem' => 'tovar dobavleno',
+    'delItem' => 'deleted',
+    'addItem' => 'item added',
+    'buyAll' => 'You orders have been successfully sent to admin wait for a reply',
+    'noMoney' => 'You no money akwan jok tupoi',
+    'addMoney' => 'Add Money',
+    'money' => 'Money',
+    'nameUser' => 'Name',
+    'languages' => 'Languages',
+    'confirmed' => 'Successfully confirmed',
+    'index' => 'index',
+    'message' => 'Message',
+
+
+
 
 ];

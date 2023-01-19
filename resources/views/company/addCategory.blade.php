@@ -17,6 +17,7 @@
            <div class="col-3"> <a href="">{{$cat->name}}</a></div>
         @endforeach
     </div>
+
     <div class="container">
         <div class="row">
             <div class="col-3">

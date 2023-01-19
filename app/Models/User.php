@@ -25,6 +25,7 @@ class User extends Authenticatable
         'role_id',
         'is_active',
         'avatar',
+        'money',
     ];
 
     /**
@@ -69,5 +70,15 @@ class User extends Authenticatable
 
     public function cart(){
         return $this->hasMany(Cart::class);
+    }
+    public function userAdminMess(){
+        return $this->belongsToMany(User::class, 'admin_user', 'admin_id','user_id')
+            ->withPivot('message')
+            ->withTimestamps();
+    }
+    public function adminUserMess(){
+        return $this->belongsToMany(User::class, 'admin_user', 'user_id','admin_id')
+            ->withPivot('message')
+            ->withTimestamps();
     }
 }

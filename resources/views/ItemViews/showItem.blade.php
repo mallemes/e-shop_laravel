@@ -1,5 +1,5 @@
 @php
-    if(\Illuminate\Support\Facades\Auth::user()->role->name !="user")
+    if(\Illuminate\Support\Facades\Auth::user() != null && \Illuminate\Support\Facades\Auth::user()->role->name !="user")
         $ext = 'layouts.adm';
     else
         $ext = 'layouts.app';
@@ -34,7 +34,6 @@
 <div class="form-control">
     <form action="{{route('items.buy', $item->id)}}" method="post">
         @csrf
-            <label  for="points"></label><input  style="width: 10%" type="number" id="points" name="count" step="1" min="1" max="3" placeholder="count">
         <label  for="ozu"></label><input  style="width: 10%" type="number" id="ozu" name="ozu" step="4" min="4" max="64" placeholder="ozu">
         <label  for="memories"></label><input  style="width: 10%" type="number" id="memories" name="memory" step="16" min="16" max="512" placeholder="memory">
         <button class="btn btn-outline-info" type="submit">buy</button>

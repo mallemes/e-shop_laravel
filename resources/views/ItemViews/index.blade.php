@@ -1,5 +1,5 @@
 @php
-    if(\Illuminate\Support\Facades\Auth::user()->role->name !="user")
+    if(\Illuminate\Support\Facades\Auth::user() != null && \Illuminate\Support\Facades\Auth::user()->role->name !="user")
         $ext = 'layouts.adm';
     else
         $ext = 'layouts.app';

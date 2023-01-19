@@ -11,7 +11,7 @@ class Cart extends Pivot
 
 {
     protected $table = 'item_user';
-    protected $fillable = ['count', 'ozu', 'memory',];
+    protected $fillable = ['count', 'ozu', 'memory','status',];
 
     public function item(){
         return $this->belongsTo(Item::class);

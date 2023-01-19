@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Company;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Message;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -25,8 +26,8 @@ class UserController extends Controller
             $users = User::whereNotIn('role_id',[2,3])->with('role')->get();
 
         }
-
-        return view('company/changesUsers',['users'=> $users,'roles' =>$roles]);
+        $w = Message::where('admin_id',Auth::user()->id)->get();
+        return view('company/changesUsers',['users'=> $users,'roles' =>$roles, 'mess' =>$w]);
     }
     public function ban(User $user){
         $this->authorize('ban', $user);
@@ -44,11 +45,12 @@ class UserController extends Controller
         return redirect()->back();
     }
     public function personals(){
+        $w = Message::where('admin_id',Auth::user()->id)->get();
         $this->authorize('viewAny',User::class);
         $personals = User::whereNotIn("role_id",[1])->whereNotIn('id',[Auth::user()->id])->with('role')->get();
         $roles = Role::whereNotIn('name',['admin'])->get();
 
-        return view('company/personals',['personals'=> $personals,'roles' =>$roles,'myAcc'=>Auth::user()]);
+        return view('company/personals',['personals'=> $personals,'roles' =>$roles,'myAcc'=>Auth::user(), 'mess' =>$w]);
     }
     public function edit(User $user){
         $user = User::findOrFail('id');

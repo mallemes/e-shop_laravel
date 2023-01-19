@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\auth2;
 
 use App\Http\Controllers\Controller;
+use App\Models\Message;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,6 +16,7 @@ class LoginController extends Controller
     public function login(Request $request){
 
         if(Auth::check()){
+
             return redirect()->intended('/profile');
         }
          $validated = $request->validate([
@@ -36,11 +38,12 @@ class LoginController extends Controller
         $x = $s." WYgyp ketti";
         Auth::logout();
 
-        return redirect()->route('items.index')->withErrors($x);
+        return redirect()->route('items.indexes')->withErrors($x);
     }
     public function profile(){
+        $w = Message::where('admin_id',Auth::user()->id)->get();
         $user = Auth::user();
-        return view('auth.profile',['user'=>$user]);
+        return view('auth.profile',['user'=>$user, 'mess' =>$w]);
     }
     public function edit(User $user){
         $this->authorize('update',$user);
@@ -63,5 +66,12 @@ class LoginController extends Controller
         $user->update($validated);
         return redirect()->route('user.profile')->with('message', 'Profile Updated');
 
+    }
+    public function editMoney(User $user ,Request $request){
+        $this->authorize('update',$user);
+        if ($request->input('money') != null){
+            $user->update(['money' =>$user->money + $request->input('money')]);
+        }
+        return redirect()->route('user.profile')->with('message', __('myTexts.moneyAdded'));
     }
 }

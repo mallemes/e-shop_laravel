@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>@yield('title')</title>
-    <link rel="stylesheet" type="text/css" href="{{asset('userViews/css/bootstrap.min.css')}}">
+{{--    <title>@yield('title')</title>--}}
+{{--    <link rel="stylesheet" type="text/css" href="{{asset('userViews/css/bootstrap.min.css')}}">--}}
     <!-- style css -->
     <link rel="stylesheet" type="text/css" href="{{asset('userViews/css/style.css')}}">
     <!-- Responsive-->
@@ -224,7 +224,7 @@
                     <li class="nav-item dropdown no-arrow mx-1">
                         <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i > Lang</i>
+                            <i >{{__('myTexts.languages')}}</i>
                             <!-- Counter - Alerts -->
                             <span class="badge badge-danger badge-counter">3</span>
                         </a>
@@ -232,84 +232,77 @@
                         <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                              aria-labelledby="alertsDropdown">
                             <h6 class="dropdown-header">
-                                languages
+                                {{__('myTexts.languages')}}
                             </h6>
 
 
-                            @foreach(config('app.langs') as $ln => $lang)
-                                <a href="{{route('switch.lang', $ln)}}" class="dropdown-item">
-                                    <img src="{{ asset('vendor/blade-flags/country-ru.svg') }}" class="mr-2" alt="flag" width="5%" >
-                                    {{$lang}}
-                                </a>
-                            @endforeach
+{{--                            @foreach(config('app.langs') as $ln => $lang)--}}
+{{--                                <a href="{{route('switch.lang', $ln)}}" class="dropdown-item">--}}
+{{--                                    <img src="{{ asset('vendor/blade-flags/country-ru.svg') }}" class="mr-2" alt="flag" width="5%" >--}}
+{{--                                    {{$lang}}--}}
+{{--                                </a>--}}
+                                <a  class="dropdown-item" href="{{route('switch.lang', ['kz'])}}"><img src="{{ asset('vendor/blade-flags/country-kz.svg') }}" class="mr-2" alt="flag" width="5%" >{{config('app.langs')['kz']}}</a>
+                                <a  class="dropdown-item" href="{{route('switch.lang', ['ru'])}}"><img src="{{ asset('vendor/blade-flags/country-ru.svg') }}" class="mr-2" alt="flag" width="5%" >{{config('app.langs')['ru']}}</a>
+                                <a  class="dropdown-item" href="{{route('switch.lang', ['en'])}}"><img src="{{ asset('vendor/blade-flags/country-gb.svg') }}" class="mr-2" alt="flag" width="5%" >{{config('app.langs')['en']}}</a>
+{{--                            @endforeach--}}
                         </div>
                     </li>
 
+                    @isset($mess)
 {{--                    <!-- Nav Item - Messages -->--}}
-{{--                    <li class="nav-item dropdown no-arrow mx-1">--}}
-{{--                        <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"--}}
-{{--                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--}}
-{{--                            <i class="fas fa-envelope fa-fw"></i>--}}
-{{--                            <!-- Counter - Messages -->--}}
-{{--                            <span class="badge badge-danger badge-counter">7</span>--}}
-{{--                        </a>--}}
-{{--                        <!-- Dropdown - Messages -->--}}
-{{--                        <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"--}}
-{{--                             aria-labelledby="messagesDropdown">--}}
-{{--                            <h6 class="dropdown-header">--}}
-{{--                                Message Center--}}
-{{--                            </h6>--}}
-{{--                            <a class="dropdown-item d-flex align-items-center" href="#">--}}
-{{--                                <div class="dropdown-list-image mr-3">--}}
-{{--                                    <img class="rounded-circle" src="img/undraw_profile_1.svg"--}}
-{{--                                         alt="...">--}}
-{{--                                    <div class="status-indicator bg-success"></div>--}}
-{{--                                </div>--}}
-{{--                                <div class="font-weight-bold">--}}
-{{--                                    <div class="text-truncate">Hi there! I am wondering if you can help me with a--}}
-{{--                                        problem I've been having.</div>--}}
-{{--                                    <div class="small text-gray-500">Emily Fowler · 58m</div>--}}
-{{--                                </div>--}}
-{{--                            </a>--}}
-{{--                            <a class="dropdown-item d-flex align-items-center" href="#">--}}
-{{--                                <div class="dropdown-list-image mr-3">--}}
-{{--                                    <img class="rounded-circle" src="img/undraw_profile_2.svg"--}}
-{{--                                         alt="...">--}}
-{{--                                    <div class="status-indicator"></div>--}}
-{{--                                </div>--}}
-{{--                                <div>--}}
-{{--                                    <div class="text-truncate">I have the photos that you ordered last month, how--}}
-{{--                                        would you like them sent to you?</div>--}}
-{{--                                    <div class="small text-gray-500">Jae Chun · 1d</div>--}}
-{{--                                </div>--}}
-{{--                            </a>--}}
-{{--                            <a class="dropdown-item d-flex align-items-center" href="#">--}}
-{{--                                <div class="dropdown-list-image mr-3">--}}
-{{--                                    <img class="rounded-circle" src="img/undraw_profile_3.svg"--}}
-{{--                                         alt="...">--}}
-{{--                                    <div class="status-indicator bg-warning"></div>--}}
-{{--                                </div>--}}
-{{--                                <div>--}}
-{{--                                    <div class="text-truncate">Last month's report looks great, I am very happy with--}}
-{{--                                        the progress so far, keep up the good work!</div>--}}
-{{--                                    <div class="small text-gray-500">Morgan Alvarez · 2d</div>--}}
-{{--                                </div>--}}
-{{--                            </a>--}}
-{{--                            <a class="dropdown-item d-flex align-items-center" href="#">--}}
-{{--                                <div class="dropdown-list-image mr-3">--}}
-{{--                                    <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"--}}
-{{--                                         alt="...">--}}
-{{--                                    <div class="status-indicator bg-success"></div>--}}
-{{--                                </div>--}}
-{{--                                <div>--}}
-{{--                                    <div class="text-truncate">Am I a good boy? The reason I ask is because someone--}}
-{{--                                        told me that people say this to all dogs, even if they aren't good...</div>--}}
-{{--                                    <div class="small text-gray-500">Chicken the Dog · 2w</div>--}}
-{{--                                </div>--}}
-{{--                            </a>--}}
-{{--                            <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>--}}
-{{--                        </div>--}}
-{{--                    </li>--}}
+                    <li class="nav-item dropdown no-arrow mx-1">
+                        <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-envelope fa-fw"></i>
+                            <!-- Counter - Messages -->
+
+                            <span class="badge badge-danger badge-counter">@if($mess != null) {{count($mess)}}@else  @endif</span>
+                        </a>
+                        <!-- Dropdown - Messages -->
+                        <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                             aria-labelledby="messagesDropdown">
+                            <h6 class="dropdown-header">
+                                Message Center
+                            </h6>
+                            @if($mess !=null)
+                            @foreach($mess as $mes)
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                <div class="dropdown-list-image mr-3">
+                                    <img class="rounded-circle" src="{{asset($mes->user->avatar)}}"
+                                         alt="...">
+                                    <div class="status-indicator bg-success"></div>
+                                </div>
+                                <div class="font-weight-bold" >
+                                   <div  style="display: flex">
+                                    <div  class="text-truncate">
+                                        <form action="{{route('company.delete.message',$mes)}}" method="post" style="display: flex">
+                                            {{$mes->user->name}}: {{$mes->message , ' '}}
+                                            @csrf
+                                            @method('DELETE')
+                                            <button style="width: 7% ; height:5px ;margin-left: 10px"  type="submit"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQg1IO_-pku4M8rgrRdWC4CFAyK_jH_QLcOGA&usqp=CAU" alt=""></button>
+                                        </form>
+                                    </div>
+                                   </div>
+                                    <br>
+                                       <div  style="display: flex">
+                                        <form action="{{route('company.message.touser',$mes->user->id)}}" method="post" style="display: flex">
+                                            @csrf
+                                            <input type="text" class="form-control" style="width: 66% ; height:25px" name="message">
+                                            <button style="width: 10% ; height:20px"  type="submit"><i class="fas fa-envelope fa-fw"></i></button></form>
+{{--                                    </div>--}}
+                                       </div>
+                                    <div class="small text-gray-500">{{$mes->created_at->diffForHumans()}}</div>
+                                </div>
+                            </a>
+
+                                @endforeach
+                            @else
+                                no
+                            @endif
+                            <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
+                        </div>
+                    </li>
+                    @endisset
 
                     <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -324,7 +317,7 @@
                         <!-- Dropdown - User Information -->
                         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                              aria-labelledby="userDropdown">
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="{{route('user.profile',Auth::user())}}">
                                 <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                 Profile
                             </a>
@@ -352,6 +345,21 @@
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
+                @if($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach($errors->all() as $error)
+                                <li>{{$error}}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                @if(session('message'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('message') }}
+                    </div>
+                @endif
+
                 @yield('content')
 
             </div>

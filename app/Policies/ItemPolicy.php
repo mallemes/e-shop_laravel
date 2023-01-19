@@ -32,20 +32,11 @@ class ItemPolicy
     {
         return ($user->role->name != 'user');
     }
-    public function buy(User $user, Item $item)
+    public function buy(User $user)
     {
         return ($user->role->name == 'user');
     }
 
 
-    public function restore(User $user, Item $item)
-    {
-        //
-    }
 
-
-    public function forceDelete(User $user, Item $item)
-    {
-        //
-    }
 }

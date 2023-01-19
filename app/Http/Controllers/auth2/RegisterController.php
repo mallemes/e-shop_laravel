@@ -17,7 +17,7 @@ class RegisterController extends Controller
     }
     public function register(Request $request){
         $w = $request->input('name');
-        $s = $w." siz satti tirkeldiniz";
+        $s = $w.__('myTexts.newUser');
        $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255|unique:users',
@@ -31,6 +31,6 @@ class RegisterController extends Controller
        }
         $user = User::create($validated);
         Auth::login($user);
-        return redirect()->route('user.profile')->with('message',__('myTexts.newUser'));
+        return redirect()->route('user.profile')->with('message',$s);
     }
 }

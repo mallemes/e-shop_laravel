@@ -26,5 +26,9 @@ class UserPolicy
     {
         return ($user->role->name == 'admin') && ($model->role->name !='admin');
     }
+    public function isAdmin(User $user){
+        return ($user->role->name == 'admin');
+    }
+
 
 }

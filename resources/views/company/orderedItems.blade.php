@@ -19,7 +19,7 @@
             <th scope="col">Status</th>
             <th scope="col">Item</th>
             <th scope="col">User</th>
-            <th scope="col">Active</th>
+            <th scope="col">Chst</th>
 
         </tr>
         </thead>
@@ -32,8 +32,11 @@
                 <td>{{$ordItems[$i]->item->title}}</td>
                 <td>{{$ordItems[$i]->user->name}}</td>
                 <td >
-
-                </td>
+                    <form action="{{route('company.confirm.order',$ordItems[$i])}} " method="post">
+                        @csrf
+                        @method('PUT')
+                        <button class="btn btn-outline-info">conf</button>
+                    </form></td>
 
             </tr>
         @endfor

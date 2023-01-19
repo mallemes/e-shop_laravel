@@ -31,8 +31,10 @@
             <td>{{$users[$i]->name}}</td>
             <td>{{$users[$i]->email}}</td>
             <td>{{$users[$i]->role->name}}</td>
+            @can('ban',$users[$i])
             <td>
-                @can('ban',$users[$i])
+
+
                 <form action="@if($users[$i]->is_active)
                     {{route('company.users.ban',$users[$i]->id)}}
                     @else

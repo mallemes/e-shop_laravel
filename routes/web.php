@@ -11,15 +11,18 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Company\ManagerController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\LangController;
+use App\Http\Controllers\MessageController;
 use App\Models\User;
 //Route::get('/', function () {
 //    return view('welcome');
+//sdjddjdo
 //});
 Route::get('lang/{lang}', [LangController::class,'switchLang'])->name('switch.lang');
 Route::get('/itemes',[ItemController::class,'index'])->name('items.indexes');
 Route::get('/',[HomeController::class,'indexxx'])->name('home.index');
 Route::get('items/search',[ItemController::class,'index'])->name('items.search');
 Route::middleware('auth')->group(function (){
+    Route::put('/profile/{user}/money',[LoginController::class, 'editMoney'])->name('users.addmoney');
     Route::post('/logout',[LoginController::class, 'logout'])->name('logout');
     Route::get('/items/buy',[ItemController::class, 'cart'])->name('items.cart');
     Route::post('/items/delete/s/{item}',[ItemController::class,'destroyCart'])->name('cart.destroy');
@@ -29,6 +32,9 @@ Route::middleware('auth')->group(function (){
     Route::get('/profile',[LoginController::class, 'profile'])->name('user.profile');
     Route::get('/profile/{user}',[LoginController::class,'edit'])->name('profile.edit');
     Route::put('/profile/{user}',[LoginController::class,'update'])->name('profile.update');
+    Route::get('/users/messages/page',[MessageController::class,'index'])->name('user.message.index');
+    Route::post('/users/messages',[MessageController::class,'messageToAdmin'])->name('user.message');
+    Route::delete('/user/delete/message/{message}',[MessageController::class,'delUserMess'])->name('user.delete.message');
     Route::prefix('company')->as('company.')->middleware('hasrole:admin,moderator')->group(function (){
         Route::get('/index',[UserController::class,'index'])->name('index');
         Route::get('/users/search',[UserController::class,'index'])->name('users.search');
@@ -40,6 +46,9 @@ Route::middleware('auth')->group(function (){
         Route::get('/list/personals',[UserController::class, 'personals'])->name('list.personals');
         Route::get('/manager/category',[ManagerController::class,'addCategoryPage'])->name('manager.addcatpage');
         Route::post('/manager/category',[ManagerController::class,'addCategory'])->name('manager.addcat');
+        Route::put('/manager/confirm/order/{cart}',[ManagerController::class, 'confirmOrder'])->name('confirm.order');
+        Route::delete('/message/delete/{message}',[MessageController::class,'delAdminMess'])->name('delete.message');
+        Route::post('/message/user/{user}',[MessageController::class,'messToUser'])->name('message.touser');
 
 
     });

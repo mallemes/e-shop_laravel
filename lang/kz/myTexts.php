@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Auth;
 return[
     'login' => 'Логин',
     'register' => 'Тіркелу',
-    'avatar' => 'Аватар',
+    'avatar' => 'Бетбейне',
     'name' => 'Аты',
     'pass' => 'Қупия сөз',
     'email' =>'Email',
@@ -15,8 +15,18 @@ return[
     'edit' => 'өзгерту',
     'del' => 'Өшіру',
     'cart' => 'Дорба',
-    'newUser' => 'Salem saitka kow keldin',
+    'newUser' => 'Салем сайтқа қош келдің',
     'addItemToCart' => 'Тауар дорбаға сәтті тіркелді',
-    'delItem' => 'udaleno',
-    'addItem' => 'tovar dobavleno',
+    'delItem' => 'тауар жойылды',
+    'addItem' => 'тауар қосылды',
+    'buyAll' => 'заказдар админге сәтті жіберілді жауап кутіңіз',
+    'noMoney' => 'тауарларды сатып алуға қаражатыңыз жеткіліксіз',
+    'addMoney' => 'Ақша салу',
+    'money' => 'Ақша',
+    'nameUser' => 'Есім',
+    'languages' => 'Тілдер',
+    'confirmed' => 'Satti satyldy',
+
+
+
 ];
